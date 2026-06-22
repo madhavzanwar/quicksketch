@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickSketch - Model Performance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a href="index.html" class="nav__brand">QuickSketch</a>
+    <nav class="nav__links" aria-label="Site navigation">
+      <a href="index.html#workspace" class="nav__link">Draw</a>
+      <a href="performance.html" class="nav__link is-active" aria-current="page">Model Performance</a>
+    </nav>
+  </header>
+
+  <main class="performance-page">
+    <section class="hero hero--performance">
+      <p class="hero__eyebrow">Model report</p>
+      <h1 class="hero__title">Model Performance</h1>
+      <p class="hero__subtitle">
+        Evaluation results for the QuickSketch CNN, presented as a concise
+        training summary and learning-curve report.
+      </p>
+    </section>
+
+    <section class="report-section" aria-labelledby="summary-heading">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Snapshot</p>
+        <h2 class="section-header__title" id="summary-heading">Training Summary</h2>
+      </div>
+
+      <div class="summary-grid" id="summary-grid">
+        <article class="summary-card">
+          <p class="summary-card__label">Validation Accuracy</p>
+          <p class="summary-card__value" data-summary="best_val_accuracy">Loading</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-card__label">Best Epoch</p>
+          <p class="summary-card__value" data-summary="best_epoch">Loading</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-card__label">Epochs Run</p>
+          <p class="summary-card__value" data-summary="num_epochs_run">Loading</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-card__label">Early Stopping</p>
+          <p class="summary-card__value" data-summary="early_stopped">Loading</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-card__label">Classes</p>
+          <p class="summary-card__value" data-summary="num_classes">Loading</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-card__label">Training Samples</p>
+          <p class="summary-card__value" data-summary="training_samples">Loading</p>
+        </article>
+        <article class="summary-card">
+          <p class="summary-card__label">Trainable Parameters</p>
+          <p class="summary-card__value" data-summary="trainable_parameters">Loading</p>
+        </article>
+      </div>
+
+      <p class="report-note" id="summary-note">
+        Values are loaded from the current training artifacts when available.
+      </p>
+    </section>
+
+    <section class="report-section" aria-labelledby="curves-heading">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Learning curves</p>
+        <h2 class="section-header__title" id="curves-heading">Training Progress</h2>
+      </div>
+
+      <div class="chart-grid">
+        <article class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <h3 class="chart-card__title">Loss</h3>
+              <p class="chart-card__meta">Training and validation loss across epochs</p>
+            </div>
+            <div class="chart-legend" aria-hidden="true">
+              <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--train"></span>Train</span>
+              <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--val"></span>Validation</span>
+            </div>
+          </div>
+          <div class="chart-shell" id="loss-chart" role="img" aria-label="Training and validation loss chart"></div>
+        </article>
+
+        <article class="chart-card">
+          <div class="chart-card__header">
+            <div>
+              <h3 class="chart-card__title">Accuracy</h3>
+              <p class="chart-card__meta">Training and validation accuracy across epochs</p>
+            </div>
+            <div class="chart-legend" aria-hidden="true">
+              <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--train"></span>Train</span>
+              <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--val"></span>Validation</span>
+            </div>
+          </div>
+          <div class="chart-shell" id="accuracy-chart" role="img" aria-label="Training and validation accuracy chart"></div>
+        </article>
+      </div>
+
+      <p class="report-note report-note--error is-hidden" id="performance-error" aria-live="polite">
+        Unable to load training artifacts.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>QuickSketch &mdash; trained on Google Quick Draw</p>
+  </footer>
+
+  <script src="js/performance.js"></script>
+</body>
+</html>

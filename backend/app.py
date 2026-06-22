@@ -11,6 +11,7 @@ sys.path.append(os.path.dirname(__file__))
 
 from predict import load_model, predict
 from utils.dataset import CATEGORIES
+from train import CONFIG
 
 # --- Initialize Flask app ---
 app = Flask(__name__)
@@ -97,6 +98,21 @@ def get_categories():
     return jsonify({
         'categories': CATEGORIES,
         'count': len(CATEGORIES)
+    })
+
+
+@app.route('/model-metadata', methods=['GET'])
+def get_model_metadata():
+    training_samples = int(
+        len(CATEGORIES)
+        * CONFIG['max_samples_per_class']
+        * CONFIG['train_ratio']
+    )
+
+    return jsonify({
+        'num_classes': len(CATEGORIES),
+        'training_samples': training_samples,
+        'trainable_parameters': model.count_parameters(),
     })
 
 
