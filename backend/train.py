@@ -1,12 +1,15 @@
 # backend/train.py
 
+import json
+import os
+import random
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import os
-import json
-from utils.dataset import get_dataloaders, CATEGORIES
 from models.cnn import QuickDrawCNN
+from utils.dataset import get_dataloaders, CATEGORIES
 
 # --- Configuration ---
 CONFIG = {
@@ -15,9 +18,35 @@ CONFIG = {
     'num_classes': len(CATEGORIES),
     'batch_size': 64,
     'max_samples_per_class': 5000,
+    'train_ratio': 0.8,
     'learning_rate': 0.001,
-    'num_epochs': 10,
+    'num_epochs': 20,
+    'early_stopping_patience': 5,
+    'random_seed': 42,
 }
+
+
+def set_random_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+    if torch.backends.cudnn.is_available():
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+
+
+def print_data_summary(class_summary, random_seed):
+    print(f'Random seed: {random_seed}')
+    print('Samples per class:')
+    for category, stats in class_summary.items():
+        print(
+            f'  {category}: sampled={stats["sampled"]} | '
+            f'train={stats["train"]} | val={stats["val"]}'
+        )
+    print()
 
 def train_one_epoch(model, loader, criterion, optimizer, device):
     model.train()
@@ -79,6 +108,8 @@ def validate(model, loader, criterion, device):
 
 
 def train():
+    set_random_seed(CONFIG['random_seed'])
+
     # Device setup
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f'Using device: {device}')
@@ -86,12 +117,15 @@ def train():
     
     # Data
     print('Loading data...')
-    train_loader, val_loader = get_dataloaders(
+    train_loader, val_loader, class_summary = get_dataloaders(
         CONFIG['data_dir'],
         CATEGORIES,
         batch_size=CONFIG['batch_size'],
-        max_samples_per_class=CONFIG['max_samples_per_class']
+        max_samples_per_class=CONFIG['max_samples_per_class'],
+        train_ratio=CONFIG['train_ratio'],
+        random_seed=CONFIG['random_seed']
     )
+    print_data_summary(class_summary, CONFIG['random_seed'])
     
     # Model
     model = QuickDrawCNN(num_classes=CONFIG['num_classes']).to(device)
@@ -108,6 +142,9 @@ def train():
     
     # Training loop
     best_val_acc = 0.0
+    best_epoch = 0
+    epochs_without_improvement = 0
+    early_stopped = False
     history = {'train_loss': [], 'train_acc': [], 'val_loss': [], 'val_acc': []}
     
     print('\nStarting training...\n')
@@ -139,6 +176,8 @@ def train():
         # Save best model
         if val_acc > best_val_acc:
             best_val_acc = val_acc
+            best_epoch = epoch + 1
+            epochs_without_improvement = 0
             model_path = os.path.join(
                 CONFIG['model_save_dir'], 'best_model.pth'
             )
@@ -149,16 +188,43 @@ def train():
                 'val_acc': val_acc,
                 'categories': CATEGORIES,
             }, model_path)
-            print(f'  ✓ New best model saved (val_acc: {val_acc:.1f}%)')
-        
+            print(f'  New best model saved (val_acc: {val_acc:.1f}%)')
+        else:
+            epochs_without_improvement += 1
+            print(
+                '  No validation accuracy improvement '
+                f'({epochs_without_improvement}/'
+                f'{CONFIG["early_stopping_patience"]})'
+            )
+
+            if epochs_without_improvement >= CONFIG['early_stopping_patience']:
+                early_stopped = True
+                print('  Early stopping triggered.')
+                print()
+                break
+
         print()
     
     # Save training history
     history_path = os.path.join(CONFIG['model_save_dir'], 'training_history.json')
     with open(history_path, 'w') as f:
         json.dump(history, f)
-    
+
+    training_summary = {
+        'best_val_accuracy': best_val_acc,
+        'best_epoch': best_epoch,
+        'num_epochs_run': len(history['train_loss']),
+        'early_stopped': early_stopped,
+        'random_seed': CONFIG['random_seed'],
+    }
+    summary_path = os.path.join(CONFIG['model_save_dir'], 'training_summary.json')
+    with open(summary_path, 'w') as f:
+        json.dump(training_summary, f)
+
     print(f'Training complete. Best validation accuracy: {best_val_acc:.1f}%')
+    print(f'Best epoch: {best_epoch}')
+    print(f'Epochs run: {len(history["train_loss"])}')
+    print(f'Early stopped: {early_stopped}')
     print(f'Model saved to: {CONFIG["model_save_dir"]}/best_model.pth')
 
 

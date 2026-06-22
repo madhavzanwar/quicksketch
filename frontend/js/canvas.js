@@ -79,10 +79,9 @@ class SketchCanvas {
 
   _resize() {
     const card = this.canvas.parentElement;
-    const rect = card.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
-    const w = Math.floor(rect.width);
-    const h = Math.floor(rect.height);
+    const w = Math.floor(card.clientWidth);
+    const h = Math.floor(card.clientHeight);
 
     if (w === 0 || h === 0) return;
 
