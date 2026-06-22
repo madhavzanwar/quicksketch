@@ -69,8 +69,13 @@ def predict_sketch():
     # Run prediction
     # Wrap in try/except to return clean error if something goes wrong
     try:
+        print("Prediction request received")
+        print(f"Image length: {len(image_data)}")
+
         results = predict(model, image_data, device, top_k=3)
-        
+
+        print(f"Top prediction: {results[0]['category']} ({results[0]['confidence']:.1f}%)")
+
         return jsonify({
             'success': True,
             'predictions': results,
