@@ -43,23 +43,17 @@ def load_model(model_path):
 def preprocess_image(image_data):
     """
     Convert raw image data into a tensor the model can process.
-    
-    image_data can be:
-    - a base64 encoded string (from the frontend canvas)
-    - a file path string
-    - raw bytes
+    Handles base64 strings, file paths, and bytes.
     """
     
     if isinstance(image_data, str):
         if image_data.startswith('data:image'):
-            # Strip the base64 header: "data:image/png;base64,..."
+            # Strip the base64 header
             image_data = image_data.split(',')[1]
         
         if os.path.exists(image_data):
-            # It's a file path - open directly
             img = Image.open(image_data)
         else:
-            # It's a base64 string - decode it
             image_bytes = base64.b64decode(image_data)
             img = Image.open(io.BytesIO(image_bytes))
     
@@ -69,25 +63,35 @@ def preprocess_image(image_data):
     else:
         raise ValueError("image_data must be a file path, base64 string, or bytes")
     
-    # Convert to grayscale (model expects 1 channel)
+    # Fix RGBA/transparency issue:
+    # Paste image onto white background before converting to grayscale
+    # This prevents transparent pixels becoming black
+    if img.mode in ('RGBA', 'LA') or \
+       (img.mode == 'P' and 'transparency' in img.info):
+        background = Image.new('RGB', img.size, (255, 255, 255))
+        if img.mode == 'P':
+            img = img.convert('RGBA')
+        background.paste(img, mask=img.split()[-1])  # use alpha as mask
+        img = background
+    
+    # Convert to grayscale
     img = img.convert('L')
     
-    # Resize to 28x28 (same size as training data)
+    # Resize to 28x28
     img = img.resize((28, 28), Image.Resampling.LANCZOS)
     
     # Convert to numpy array
     img_array = np.array(img, dtype=np.float32)
     
-    # Normalize pixel values from [0, 255] to [0, 1]
+    # Normalize to [0, 1]
     img_array = img_array / 255.0
     
-    # Quick Draw dataset has white strokes on black background
-    # Canvas draws black strokes on white background
-    # So we need to invert: 1 - pixel_value
+    # Invert: canvas has black strokes on white background
+    # Quick Draw training data has white strokes on black background
+    # So we invert to match training format
     img_array = 1.0 - img_array
     
-    # Reshape to (1, 1, 28, 28):
-    # batch_size=1, channels=1, height=28, width=28
+    # Reshape to (1, 1, 28, 28)
     img_tensor = torch.tensor(img_array).unsqueeze(0).unsqueeze(0)
     
     return img_tensor
