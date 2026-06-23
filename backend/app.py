@@ -22,7 +22,7 @@ CORS(app)
 # --- Load model once at startup ---
 # We load it here so it's ready for every request
 # Loading on every request would be very slow
-MODEL_PATH = os.path.join(os.path.dirname(__file__), 'models', 'best_model.pth')
+MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'models', 'best_model.pth')
 
 print("Loading model...")
 model, device = load_model(MODEL_PATH)
