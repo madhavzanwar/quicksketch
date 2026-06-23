@@ -2,7 +2,7 @@
  * QuickSketch — app logic and Flask API integration.
  */
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = 'https://quicksketch-api.onrender.com';
 
 const sketch = new SketchCanvas(document.getElementById('sketch-canvas'));
 
