@@ -7,7 +7,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-CNN-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org)
 [![Flask](https://img.shields.io/badge/Flask-API-000000?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com)
-[![Accuracy](https://img.shields.io/badge/Accuracy-95.6%25-22C55E?style=flat-square)](#model-details)
+[![Accuracy](https://img.shields.io/badge/Accuracy-95.9%25-22C55E?style=flat-square)](#model-details)
 [![Dataset](https://img.shields.io/badge/Dataset-Google%20Quick%20Draw-4285F4?style=flat-square)](#model-details)
 [![License](https://img.shields.io/badge/License-MIT-6B7280?style=flat-square)](LICENSE)
 
@@ -107,7 +107,7 @@ against 16 categories — returning ranked predictions with confidence scores, a
 │     • RGBA → RGB (white background composite)               │
 │     • Grayscale conversion                                  │
 │     • Resize to 28 × 28                                     │
-│     • Normalize [0, 255] → [0.0, 1.0]                      │
+│     • Normalize [0, 255] → [0.0, 1.0]                       │
 │     • Invert (match Quick Draw format)                      │
 │          ↓                                                  │
 │   PyTorch CNN inference                                     │
@@ -130,8 +130,8 @@ against 16 categories — returning ranked predictions with confidence scores, a
 | **Training samples** | 64,000 (4,000 per class) |
 | **Validation samples** | 16,000 (1,000 per class) |
 | **Trainable parameters** | 391,952 |
-| **Epochs trained** | 10 |
-| **Validation accuracy** | **95.6%** |
+| **Epochs trained** | 20 |
+| **Validation accuracy** | **95.9%** |
 | **Loss function** | CrossEntropyLoss |
 | **Optimizer** | Adam (lr = 0.001) |
 | **LR scheduler** | ReduceLROnPlateau |
