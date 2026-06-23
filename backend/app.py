@@ -17,7 +17,11 @@ from train import CONFIG
 app = Flask(__name__)
 
 # Allow requests from any origin (needed for frontend to talk to backend)
-CORS(app)
+CORS(app, origins=[
+    "https://madhavzanwar.github.io",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080"
+])
 
 # --- Load model once at startup ---
 # We load it here so it's ready for every request
