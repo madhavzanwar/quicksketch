@@ -27,33 +27,9 @@ against 16 categories — returning ranked predictions with confidence scores, a
 
 ## 📸 Screenshots
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="C:\Users\poona\OneDrive\Pictures\ss1.png" alt="Homepage" width="100%"/>
-      <br/>
-      <sub><b>Landing page</b> — clean hero section with canvas workspace</sub>
-    </td>
-    <td align="center">
-      <img src="C:\Users\poona\OneDrive\Pictures\ss3.png" alt="Model Perfor" width="100%"/>
-      <br/>
-      <sub><b>Drawing mode</b> — pen, eraser, undo, clear and save tools</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="C:\Users\poona\OneDrive\Pictures\ss4.png" alt="Trainging Progress" width="100%"/>
-      <br/>
-      <sub><b>Live prediction</b> — top-3 suggestions with confidence bars</sub>
-    </td>
-    <td align="center">
-      <img src="C:\Users\poona\OneDrive\Pictures\ss5.png" alt="Colliding Categories" width="100%"/>
-      <br/>
-      <sub><b>Model performance page</b> — training curves, confusion matrix, per-class metrics</sub>
-    </td>
-  </tr>
-</table>
+<table> <tr> <td align="center" width="50%"> <img src="assets/screenshots/homepage.png" alt="QuickSketch Homepage" width="100%"> <br> <sub><b>Homepage</b> — Draw sketches in real time and receive AI-powered predictions instantly.</sub> </td> <td align="center" width="50%"> <img src="assets/screenshots/model-performance.png" alt="Model Performance Dashboard" width="100%"> <br> <sub><b>Model Performance</b> — Validation accuracy, training summary, model statistics, and evaluation metrics.</sub> </td> </tr>
 
+<tr> <td align="center" width="50%"> <img src="assets/screenshots/training-curves.png" alt="Training Curves" width="100%"> <br> <sub><b>Training Curves</b> — Training vs validation accuracy and loss across 20 epochs.</sub> </td> <td align="center" width="50%"> <img src="assets/screenshots/confused-categories.png" alt="Confused Categories" width="100%"> <br> <sub><b>Confused Categories</b> — Confusion matrix insights highlighting commonly misclassified classes.</sub> </td> </tr> </table>
 
 ---
 
