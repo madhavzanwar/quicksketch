@@ -5,6 +5,8 @@ __pycache__/
 backend/data/
 
 
+
 *.png
+!assets/screenshots/*.png
 
 .DS_Store
