@@ -17,7 +17,7 @@ QuickSketch is a full-stack AI web application that recognises hand-drawn sketch
 Draw on the canvas, hit **Predict**, and a custom-trained PyTorch CNN classifies your sketch
 against 16 categories — returning ranked predictions with confidence scores, all in under a second.
 
-**[🚀 Live Demo]([#](https://madhavzanwar.github.io/quicksketch/))** &nbsp;·&nbsp; **[📊 Model Performance]([#model-performance](https://madhavzanwar.github.io/quicksketch/performance.html))** 
+[🚀 Live Demo](https://madhavzanwar.github.io/quicksketch/) · [📊 Model Performance](https://madhavzanwar.github.io/quicksketch/performance.html)
 
 <br/>
 
