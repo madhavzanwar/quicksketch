@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="performance-body">
   <header class="nav">
     <a href="index.html" class="nav__brand">QuickSketch</a>
     <nav class="nav__links" aria-label="Site navigation">
@@ -26,6 +26,11 @@
         Evaluation results for the QuickSketch CNN, presented as a concise
         training summary and learning-curve report.
       </p>
+      <div class="hero-meta" id="hero-meta">
+        <span class="hero-meta__item">16 classes</span>
+        <span class="hero-meta__item">64,000 training samples</span>
+        <span class="hero-meta__item">95.9% validation accuracy</span>
+      </div>
     </section>
 
     <section class="report-section" aria-labelledby="summary-heading">
@@ -108,6 +113,111 @@
 
       <p class="report-note report-note--error is-hidden" id="performance-error" aria-live="polite">
         Unable to load training artifacts.
+      </p>
+      <p class="report-note is-hidden" id="curve-note">
+        Curves are rendered from the saved training history artifact.
+      </p>
+    </section>
+
+    <section class="report-section" aria-labelledby="matrix-heading">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Evaluation map</p>
+        <h2 class="section-header__title" id="matrix-heading">Confusion Matrix</h2>
+      </div>
+
+      <article class="artifact-card">
+        <div class="artifact-card__header">
+          <div>
+            <h3 class="artifact-card__title">Validation-set class predictions</h3>
+            <p class="artifact-card__meta">
+              A compact visual summary of where the model is strong and where categories overlap.
+            </p>
+          </div>
+        </div>
+
+        <figure class="matrix-figure" id="matrix-figure">
+          <img
+            src="model-artifacts/confusion_matrix.png"
+            alt="Confusion matrix for the QuickSketch model"
+            class="matrix-image"
+            id="confusion-matrix-image"
+          >
+          <figcaption class="matrix-caption" id="matrix-caption">
+            Darker diagonal cells indicate stronger class separation on the held-out validation split.
+          </figcaption>
+        </figure>
+
+        <p class="chart-shell__empty is-hidden" id="matrix-fallback">
+          Confusion matrix image unavailable.
+        </p>
+
+        <p class="report-note is-hidden" id="matrix-note">
+          Saved from the held-out validation split for the current released checkpoint.
+        </p>
+      </article>
+    </section>
+
+    <section class="report-section" aria-labelledby="metrics-heading">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Class breakdown</p>
+        <h2 class="section-header__title" id="metrics-heading">Per-Class Metrics</h2>
+      </div>
+
+      <article class="artifact-card">
+        <div class="artifact-card__header">
+          <div>
+            <h3 class="artifact-card__title">Precision, recall, F1-score, and support</h3>
+            <p class="artifact-card__meta">
+              Recruiter-friendly class-level evaluation pulled from the saved metrics artifact.
+            </p>
+          </div>
+        </div>
+
+        <div class="metrics-table-wrap" id="metrics-table-wrap">
+          <table class="metrics-table" id="metrics-table">
+            <thead>
+              <tr>
+                <th scope="col">Class</th>
+                <th scope="col">Precision</th>
+                <th scope="col">Recall</th>
+                <th scope="col">F1-score</th>
+                <th scope="col">Support</th>
+              </tr>
+            </thead>
+            <tbody id="metrics-table-body">
+              <tr>
+                <td colspan="5" class="metrics-table__empty">Loading class metrics...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="chart-shell__empty is-hidden" id="metrics-fallback">
+          Class metrics unavailable.
+        </p>
+
+        <p class="report-note is-hidden" id="metrics-note">
+          All values are pulled directly from the saved evaluation metrics artifact.
+        </p>
+      </article>
+    </section>
+
+    <section class="report-section" aria-labelledby="pairs-heading">
+      <div class="section-header">
+        <p class="section-header__eyebrow">Model insight</p>
+        <h2 class="section-header__title" id="pairs-heading">Most Confused Classes</h2>
+      </div>
+
+      <div class="insight-grid" id="confusion-pairs-grid">
+        <article class="insight-card insight-card--placeholder">
+          <p class="insight-card__eyebrow">Loading</p>
+          <h3 class="insight-card__title">Confusion insights</h3>
+          <p class="insight-card__body">Saved misclassification patterns will appear here.</p>
+        </article>
+      </div>
+
+      <p class="report-note is-hidden" id="pairs-note">
+        Top off-diagonal confusion pairs from the saved evaluation artifact.
       </p>
     </section>
   </main>

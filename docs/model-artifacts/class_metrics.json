@@ -1,0 +1,200 @@
+{
+  "class_names": [
+    "apple",
+    "bicycle",
+    "book",
+    "camera",
+    "chair",
+    "crown",
+    "diamond",
+    "fish",
+    "guitar",
+    "house",
+    "lightning",
+    "mountain",
+    "pizza",
+    "star",
+    "sun",
+    "umbrella"
+  ],
+  "num_classes": 16,
+  "total_samples": 16000,
+  "metrics": [
+    {
+      "class_name": "apple",
+      "label_index": 0,
+      "precision": 0.972139,
+      "recall": 0.977,
+      "f1_score": 0.974564,
+      "support": 1000,
+      "true_positives": 977,
+      "false_positives": 28,
+      "false_negatives": 23
+    },
+    {
+      "class_name": "bicycle",
+      "label_index": 1,
+      "precision": 0.974975,
+      "recall": 0.974,
+      "f1_score": 0.974487,
+      "support": 1000,
+      "true_positives": 974,
+      "false_positives": 25,
+      "false_negatives": 26
+    },
+    {
+      "class_name": "book",
+      "label_index": 2,
+      "precision": 0.955779,
+      "recall": 0.951,
+      "f1_score": 0.953383,
+      "support": 1000,
+      "true_positives": 951,
+      "false_positives": 44,
+      "false_negatives": 49
+    },
+    {
+      "class_name": "camera",
+      "label_index": 3,
+      "precision": 0.982635,
+      "recall": 0.962,
+      "f1_score": 0.972208,
+      "support": 1000,
+      "true_positives": 962,
+      "false_positives": 17,
+      "false_negatives": 38
+    },
+    {
+      "class_name": "chair",
+      "label_index": 4,
+      "precision": 0.948207,
+      "recall": 0.952,
+      "f1_score": 0.9501,
+      "support": 1000,
+      "true_positives": 952,
+      "false_positives": 52,
+      "false_negatives": 48
+    },
+    {
+      "class_name": "crown",
+      "label_index": 5,
+      "precision": 0.964965,
+      "recall": 0.964,
+      "f1_score": 0.964482,
+      "support": 1000,
+      "true_positives": 964,
+      "false_positives": 35,
+      "false_negatives": 36
+    },
+    {
+      "class_name": "diamond",
+      "label_index": 6,
+      "precision": 0.953629,
+      "recall": 0.946,
+      "f1_score": 0.949799,
+      "support": 1000,
+      "true_positives": 946,
+      "false_positives": 46,
+      "false_negatives": 54
+    },
+    {
+      "class_name": "fish",
+      "label_index": 7,
+      "precision": 0.962245,
+      "recall": 0.943,
+      "f1_score": 0.952525,
+      "support": 1000,
+      "true_positives": 943,
+      "false_positives": 37,
+      "false_negatives": 57
+    },
+    {
+      "class_name": "guitar",
+      "label_index": 8,
+      "precision": 0.960239,
+      "recall": 0.966,
+      "f1_score": 0.963111,
+      "support": 1000,
+      "true_positives": 966,
+      "false_positives": 40,
+      "false_negatives": 34
+    },
+    {
+      "class_name": "house",
+      "label_index": 9,
+      "precision": 0.973027,
+      "recall": 0.974,
+      "f1_score": 0.973513,
+      "support": 1000,
+      "true_positives": 974,
+      "false_positives": 27,
+      "false_negatives": 26
+    },
+    {
+      "class_name": "lightning",
+      "label_index": 10,
+      "precision": 0.901734,
+      "recall": 0.936,
+      "f1_score": 0.918548,
+      "support": 1000,
+      "true_positives": 936,
+      "false_positives": 102,
+      "false_negatives": 64
+    },
+    {
+      "class_name": "mountain",
+      "label_index": 11,
+      "precision": 0.957129,
+      "recall": 0.96,
+      "f1_score": 0.958562,
+      "support": 1000,
+      "true_positives": 960,
+      "false_positives": 43,
+      "false_negatives": 40
+    },
+    {
+      "class_name": "pizza",
+      "label_index": 12,
+      "precision": 0.931268,
+      "recall": 0.962,
+      "f1_score": 0.946385,
+      "support": 1000,
+      "true_positives": 962,
+      "false_positives": 71,
+      "false_negatives": 38
+    },
+    {
+      "class_name": "star",
+      "label_index": 13,
+      "precision": 0.956784,
+      "recall": 0.952,
+      "f1_score": 0.954386,
+      "support": 1000,
+      "true_positives": 952,
+      "false_positives": 43,
+      "false_negatives": 48
+    },
+    {
+      "class_name": "sun",
+      "label_index": 14,
+      "precision": 0.974671,
+      "recall": 0.962,
+      "f1_score": 0.968294,
+      "support": 1000,
+      "true_positives": 962,
+      "false_positives": 25,
+      "false_negatives": 38
+    },
+    {
+      "class_name": "umbrella",
+      "label_index": 15,
+      "precision": 0.98374,
+      "recall": 0.968,
+      "f1_score": 0.975806,
+      "support": 1000,
+      "true_positives": 968,
+      "false_positives": 16,
+      "false_negatives": 32
+    }
+  ]
+}
