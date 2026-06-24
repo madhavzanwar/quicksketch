@@ -17,7 +17,7 @@ QuickSketch is a full-stack AI web application that recognises hand-drawn sketch
 Draw on the canvas, hit **Predict**, and a custom-trained PyTorch CNN classifies your sketch
 against 16 categories — returning ranked predictions with confidence scores, all in under a second.
 
-**[🚀 Live Demo](#)** &nbsp;·&nbsp; **[📊 Model Performance](#model-performance)** &nbsp;·&nbsp; **[⚙️ Installation](#installation)**
+**[🚀 Live Demo]([#](https://madhavzanwar.github.io/quicksketch/))** &nbsp;·&nbsp; **[📊 Model Performance]([#model-performance](https://madhavzanwar.github.io/quicksketch/performance.html))** 
 
 <br/>
 
@@ -30,31 +30,30 @@ against 16 categories — returning ranked predictions with confidence scores, a
 <table>
   <tr>
     <td align="center">
-      <img src="assets/screenshots/homepage.png" alt="Homepage" width="100%"/>
+      <img src="C:\Users\poona\OneDrive\Pictures\ss1.png" alt="Homepage" width="100%"/>
       <br/>
       <sub><b>Landing page</b> — clean hero section with canvas workspace</sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/drawing.png" alt="Drawing" width="100%"/>
+      <img src="C:\Users\poona\OneDrive\Pictures\ss3.png" alt="Model Perfor" width="100%"/>
       <br/>
       <sub><b>Drawing mode</b> — pen, eraser, undo, clear and save tools</sub>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="assets/screenshots/prediction.png" alt="Prediction" width="100%"/>
+      <img src="C:\Users\poona\OneDrive\Pictures\ss4.png" alt="Trainging Progress" width="100%"/>
       <br/>
       <sub><b>Live prediction</b> — top-3 suggestions with confidence bars</sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/model-performance.png" alt="Model Performance" width="100%"/>
+      <img src="C:\Users\poona\OneDrive\Pictures\ss5.png" alt="Colliding Categories" width="100%"/>
       <br/>
       <sub><b>Model performance page</b> — training curves, confusion matrix, per-class metrics</sub>
     </td>
   </tr>
 </table>
 
-> **→ Replace the placeholders above with your actual screenshots before publishing.**
 
 ---
 
